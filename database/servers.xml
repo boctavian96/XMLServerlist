@@ -1,0 +1,15 @@
+<database>
+	<server>
+		<name>MineCraft Superior</name>
+		<address>hub.mcs.gg</address>
+		<players>1234</players>
+		<playersMax>8000</playersMax>
+		<votes>4233</votes>
+		<version>1.15.1</version>
+		<tags>
+			<tag>Survival</tag>
+			<tag>Skyblock</tag>
+			<tag>Hunger Games</tag>
+		</tags>
+	</server>
+</database>
