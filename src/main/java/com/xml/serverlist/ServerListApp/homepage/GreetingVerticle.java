@@ -6,7 +6,7 @@ import io.vertx.ext.web.Route;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.StaticHandler;
 
-public class BackendVerticle extends AbstractVerticle {
+public class GreetingVerticle extends AbstractVerticle {
 	
 
 	@Override
@@ -26,6 +26,6 @@ public class BackendVerticle extends AbstractVerticle {
 	
 	public static void main(String[] args) {
 		Vertx vertx = Vertx.vertx();
-		vertx.deployVerticle(new BackendVerticle());
+		vertx.deployVerticle(new GreetingVerticle());
 	}
 }
