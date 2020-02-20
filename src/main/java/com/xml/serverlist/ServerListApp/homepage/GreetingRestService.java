@@ -9,8 +9,15 @@ import javax.ws.rs.core.Response;
 public class GreetingRestService {
 
 	@GET
-	@Path("/{name:.*}")
-	public Response doGet(@PathParam("name") String name) {
+	@Path("/all")
+	public Response getAllServers() {
+		String serversList = "Server1</br>Server2</br>...";
+		return Response.status(200).entity(serversList).build();
+	}
+	
+	@GET
+	@Path("/name/{name:.*}")
+	public Response doGetName(@PathParam("name") String name) {
 		if (name == null || name.isEmpty()) {
 			name = "World";
 		}
@@ -20,14 +27,19 @@ public class GreetingRestService {
 	}
 	
 	@GET
-	@Path("/{name:.*}/{age:.*}")
-	public Response doGreetAge(@PathParam("name") String name, @PathParam("age") String age) {
-		if(name == null || age == null) {
-			name = "World";
-			age = "all the";
+	@Path("/address/{address:.*}")
+	public Response doGetAddress(@PathParam("address") String address) {
+		if(address == null || address.isEmpty()) {
+			address = "localhost";
 		}
 		
-		return Response.status(200).entity("Hello " + name + "!" + "\nYou have " + age + " years").build();
+		return Response.status(200).entity("Our address is: " + address).build();
+	}
+	
+	@GET
+	@Path("/tag/{tagname:.*}")
+	public Response doGetTagname(@PathParam("tagname") String tag) {
+		return Response.status(200).entity("fml").build(); 
 	}
 
 }
