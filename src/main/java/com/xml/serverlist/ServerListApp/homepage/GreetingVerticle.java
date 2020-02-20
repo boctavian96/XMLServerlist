@@ -12,9 +12,14 @@ public class GreetingVerticle extends AbstractVerticle {
 	@Override
 	public void start() {
 		Router router = Router.router(vertx);
-		Route messageRoute = router.get("/api/message");
-		messageRoute.handler(rc -> {
+		Route helloRoute = router.get("/api/message");
+		helloRoute.handler(rc -> {
 			rc.response().end("Hello from Vert.x");
+		});
+		
+		Route copitulinaRoute = router.get("/api/copitulina");
+		copitulinaRoute.handler(rc -> {
+			rc.response().end("<h1>Adelina ii kopitulina</h1>");
 		});
 		
 		router.get().handler(StaticHandler.create());
