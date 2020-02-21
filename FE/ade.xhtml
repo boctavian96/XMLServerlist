@@ -1,0 +1,111 @@
+
+  <html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xh="http://www.w3.org/1999/xhtml"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:ev="http://www.w3.org/2001/xml-events"
+  xmlns:xxf="http://orbeon.org/oxf/xml/xforms">
+<head>
+    <title>Server List</title>
+    <xf:model>
+        <!-- Load list of servers when the XForms engine is ready -->
+        <xf:send ev:event="xforms-ready" submission="list-submission"/>
+
+        <!-- Instance that contains all the servers -->
+        <xf:instance id="servers-instance">
+            <database xmlns="">
+                <server>
+                    <id/>
+                    <game/>
+                    <name/>
+                    <address/>
+                    <players/>
+                    <playersMax/>
+                    <votes/>
+                    <version/>
+                    <tags>
+                    <tag/>
+                    </tags>    
+                </server>
+            </database>
+        </xf:instance>
+
+        <!-- Submission to load the sample data -->
+        <xf:submission id="sample-data-submission" serialization="none"
+                   method="get" action="oxf:/apps/xforms-ade/servers.xml"
+                   replace="instance" />
+
+    </xf:model>
+    <style type="text/css">
+        .orbeon .servers-action-table { margin-bottom: 10px }
+        .orbeon .servers-action-table button { margin-right: 5px }
+        .orbeon .servers-action-table .xforms-submit img { margin-right: 5px; vertical-align: middle }
+        .orbeon .servers-action-table .xforms-submit span { vertical-align: middle }
+
+        .orbeon .servers-table { background-color: #f5f5f5 }
+        .orbeon .servers-table .add-td { width: 440px }
+        .orbeon .servers-table .form-td { width: 440px; padding: 10px; background-color: white }
+
+        .orbeon .xforms-control {
+            display: inline-block;
+            margin-bottom: 2px;
+        }
+
+        .orbeon .xforms-label { font-weight: bold; display: inline-block; min-width: 9em }
+        .orbeon .xforms-select1-appearance-full .xforms-label { float: center }
+
+        .orbeon .xforms-input , .orbeon .xforms-textarea , .orbeon .xforms-select1  {
+            clear: both;
+        }
+
+        .orbeon .xforms-input input, .orbeon .xforms-textarea textarea, .orbeon .xforms-select1 select {
+            width: 20em;
+            margin-bottom: 2px;
+        }
+
+        .orbeon .xforms-repeat-selected-item-1 .form-td { background-color: #f5f5f5 }
+    </style>
+</head>
+<body>
+
+    <!-- This table contains the main actions for the page  -->
+    <table class="servers-action-table">
+        <tr>
+            <td>
+                <xf:submit submission="save-submission">
+                    <xf:label><img src="./list.png" alt="Save"/><span>Save</span></xf:label>
+                </xf:submit>
+            </td>
+            <td>
+                <xf:submit submission="sample-data-submission">
+                    <xf:label><img src="./list.png" alt="Load Sample Data"/><span>Load Sample Data</span></xf:label>
+                </xf:submit>
+            </td>
+        </tr>
+    </table>
+
+    <!-- This table contains the list of servers and the add/remove triggers -->
+    <table class="servers-table">
+        <tr>
+            <th>Rank</th>
+            <th>Server</th> 
+            <th>IP Address</th>
+          </tr>
+        <xf:repeat ref="server" id="server-repeat">
+            <tr>
+                <td class="form-td">
+                    <xf:output ref="votes"/>
+                </td>
+                <td class="form-td">    
+                    <xf:output ref="name"/>
+                </td>
+                <td class="form-td">    
+                    <xf:output ref="address"/>
+                    <p>players: <xf:output ref="players"/></p>
+                    <p>votes: <xf:output ref="votes"/></p>
+                </td>
+            </tr>
+        </xf:repeat>
+    </table>
+</body>
+</html>
