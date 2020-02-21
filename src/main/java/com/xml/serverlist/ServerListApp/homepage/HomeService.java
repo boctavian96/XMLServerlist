@@ -4,16 +4,19 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
+import com.xml.serverlist.ServerListApp.database.ReadVerticle;
+
 @Path("/")
 public class HomeService {
 
 	@GET
 	@Path("/")
 	public Response getHomePage() {
-		String serversList = "Form1</br>Form2</br>...";
-		return Response.status(200).entity(serversList).build();
+		String rawXml = ReadVerticle.readSource("/database/server");
+		return Response.status(200).entity(rawXml).build();
+
 	}
-	
+
 	@GET
 	@Path("/api_info")
 	public Response getTheApi() {

@@ -18,7 +18,7 @@ import com.xml.serverlist.ServerListApp.config.Config;
 
 public class ReadVerticle {
 
-	public String readSource(String xPathExpression) {
+	public static String readSource(String xPathExpression) {
 		File xmlDatabase = new File(Config.DATABASE_FILE);
 		StringBuilder sb = new StringBuilder();
 		DOMReader reader = new DOMReader();

@@ -7,6 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import com.xml.serverlist.ServerListApp.database.ReadVerticle;
+
 @Path("/xml")
 public class XmlRestService {
 
@@ -63,10 +65,10 @@ public class XmlRestService {
 	}
 	
 	@GET
-	@Path("/raw}")
+	@Path("/raw")
 	public Response doGetTagname() {
-		// TODO: Just prints the raw xml file.
-		return Response.status(200).entity("fml").build();
+		String rawXml = ReadVerticle.readSource("/database/server");
+		return Response.status(200).entity(rawXml).build();
 	}
 
 }
