@@ -1,7 +1,7 @@
 <database>
 	<server>
-	    <id>1</id>
-	    <game>Minecraft</game>
+		<id>1</id>
+		<game>Minecraft</game>
 		<name>MineCraft Superior</name>
 		<address>hub.mcs.gg</address>
 		<players>1234</players>
@@ -12,6 +12,82 @@
 			<tag>Survival</tag>
 			<tag>Skyblock</tag>
 			<tag>Hunger Games</tag>
+		</tags>
+	</server>
+
+	<server>
+		<id>2</id>
+		<game>Minecraft</game>
+		<name>MineCraft Warriors</name>
+		<address>hub.www.gg</address>
+		<players>1111</players>
+		<playersMax>4000</playersMax>
+		<votes>402</votes>
+		<version>1.15.1</version>
+		<tags>
+			<tag>Survival</tag>
+			<tag>Warfare</tag>
+			<tag>Hunger Games</tag>
+		</tags>
+	</server>
+
+	<server>
+		<id>3</id>
+		<game>PUGB</game>
+		<name>The Main</name>
+		<address>pugb.ko</address>
+		<players>100</players>
+		<playersMax>10000</playersMax>
+		<votes>414511</votes>
+		<version>3.9</version>
+		<tags>
+			<tag>Shooter</tag>
+			<tag>Comping</tag>
+			<tag>Survival</tag>
+		</tags>
+	</server>
+
+	<server>
+		<id>4</id>
+		<game>Counter-Strike</game>
+		<name>CSGO</name>
+		<address>web.cs.ro</address>
+		<players>88</players>
+		<playersMax>100</playersMax>
+		<votes>233</votes>
+		<version>1.6</version>
+		<tags>
+			<tag>No-Camping</tag>
+			<tag>Shooter</tag>
+		</tags>
+	</server>
+	
+	<server>
+		<id>5</id>
+		<game>Minecraft</game>
+		<name>MeinKraft</name>
+		<address>meinkraft.de</address>
+		<players>6433</players>
+		<playersMax>8000</playersMax>
+		<votes>10031</votes>
+		<version>1.15.9</version>
+		<tags>
+			<tag>Survival</tag>
+		</tags>
+	</server>
+	
+	<server>
+		<id>6</id>
+		<game>Age of empires</game>
+		<name>AOE Tribes</name>
+		<address>aoe.us</address>
+		<players>4</players>
+		<playersMax>50</playersMax>
+		<votes>123</votes>
+		<version>HD Edition</version>
+		<tags>
+			<tag>Strategy</tag>
+			<tag>Feudal</tag>
 		</tags>
 	</server>
 </database>
