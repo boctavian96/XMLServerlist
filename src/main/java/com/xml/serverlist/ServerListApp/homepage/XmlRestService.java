@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 @Path("/")
-public class GreetingRestService {
+public class XmlRestService {
 
 	@GET
 	@Path("/all")
@@ -27,7 +27,6 @@ public class GreetingRestService {
 		}
 
 		return Response.status(200).entity("Hello " + name + "!").build();
-
 	}
 
 	@GET

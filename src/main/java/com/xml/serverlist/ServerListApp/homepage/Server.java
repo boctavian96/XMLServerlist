@@ -5,25 +5,30 @@ import org.jboss.resteasy.plugins.server.vertx.VertxResteasyDeployment;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 
-public class GreetingServer extends AbstractVerticle {
+public class Server extends AbstractVerticle {
+
+	private final Logger log = LoggerFactory.getLogger(Server.class.getName());
 
 	public static void main(String[] args) {
 		Vertx vertx = Vertx.vertx();
-		vertx.deployVerticle(new GreetingServer());
+		vertx.deployVerticle(new Server());
 	}
 
 	@Override
 	public void start() {
 		VertxResteasyDeployment deployment = new VertxResteasyDeployment();
 		deployment.start();
-		deployment.getRegistry().addPerInstanceResource(GreetingRestService.class);
+		deployment.getRegistry().addPerInstanceResource(XmlRestService.class);
+		deployment.getRegistry().addPerInstanceResource(XFormsService.class);
 
 		// Front end server.
 		vertx.createHttpServer() //
 				.requestHandler(new VertxRequestHandler(vertx, deployment)) //
 				.listen(8080, ar -> {
-					System.out.println("Server started on port " + ar.result().actualPort());
+					log.info("Server started on port " + ar.result().actualPort());
 				});
 
 	}
