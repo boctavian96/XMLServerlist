@@ -4,7 +4,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
-@Path("/")
+@Path("/api")
 public class XFormsService {
 	@GET
 	@Path("/xforms")
