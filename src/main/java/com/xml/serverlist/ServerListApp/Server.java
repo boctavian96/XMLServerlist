@@ -1,7 +1,11 @@
-package com.xml.serverlist.ServerListApp.homepage;
+package com.xml.serverlist.ServerListApp;
 
 import org.jboss.resteasy.plugins.server.vertx.VertxRequestHandler;
 import org.jboss.resteasy.plugins.server.vertx.VertxResteasyDeployment;
+
+import com.xml.serverlist.ServerListApp.homepage.HomeService;
+import com.xml.serverlist.ServerListApp.homepage.XFormsService;
+import com.xml.serverlist.ServerListApp.homepage.XmlRestService;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -23,6 +27,7 @@ public class Server extends AbstractVerticle {
 		deployment.start();
 		deployment.getRegistry().addPerInstanceResource(XmlRestService.class);
 		deployment.getRegistry().addPerInstanceResource(XFormsService.class);
+		deployment.getRegistry().addPerInstanceResource(HomeService.class);
 
 		// Front end server.
 		vertx.createHttpServer() //
