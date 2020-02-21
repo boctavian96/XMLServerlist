@@ -1,0 +1,34 @@
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="database">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="server" maxOccurs="unbounded"
+					minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element type="xs:byte" name="id" />
+							<xs:element type="xs:string" name="game" />
+							<xs:element type="xs:string" name="name" />
+							<xs:element type="xs:string" name="address" />
+							<xs:element type="xs:short" name="players" />
+							<xs:element type="xs:short" name="playersMax" />
+							<xs:element type="xs:int" name="votes" />
+							<xs:element type="xs:string" name="version" />
+							<xs:element name="tags">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type="xs:string" name="tag"
+											maxOccurs="unbounded" minOccurs="0" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+

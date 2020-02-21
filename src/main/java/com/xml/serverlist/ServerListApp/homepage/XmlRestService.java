@@ -61,5 +61,12 @@ public class XmlRestService {
 		// TODO: Delete server.
 		return null;
 	}
+	
+	@GET
+	@Path("/raw}")
+	public Response doGetTagname() {
+		// TODO: Just prints the raw xml file.
+		return Response.status(200).entity("fml").build();
+	}
 
 }
