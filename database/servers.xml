@@ -1,6 +1,7 @@
 <database>
 	<server>
 	    <id>1</id>
+	    <game>Minecraft</game>
 		<name>MineCraft Superior</name>
 		<address>hub.mcs.gg</address>
 		<players>1234</players>
