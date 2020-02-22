@@ -1,6 +1,8 @@
 package com.xml.serverlist.ServerListApp.database;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,7 +20,8 @@ import com.xml.serverlist.ServerListApp.config.Config;
 
 public class ReadVerticle {
 
-	public static String readSource(String xPathExpression) {
+	public static List<String> readSource(String xPathExpression) {
+		List<String> values = new ArrayList<>();
 		File xmlDatabase = new File(Config.DATABASE_FILE);
 		StringBuilder sb = new StringBuilder();
 		DOMReader reader = new DOMReader();
@@ -43,7 +46,7 @@ public class ReadVerticle {
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 					Element element = (Element) node;
 
-					sb.append(element.getTextContent());
+					values.add(element.getTextContent());
 				}
 			}
 
@@ -51,7 +54,7 @@ public class ReadVerticle {
 			e.printStackTrace();
 		}
 
-		return sb.toString();
+		return values;
 	}
 
 }

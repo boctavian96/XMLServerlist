@@ -1,10 +1,13 @@
 package com.xml.serverlist.ServerListApp.homepage;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 import com.xml.serverlist.ServerListApp.database.ReadVerticle;
+import com.xml.serverlist.html.TableBuilder;
 
 @Path("/")
 public class HomeService {
@@ -12,8 +15,10 @@ public class HomeService {
 	@GET
 	@Path("/")
 	public Response getHomePage() {
-		String rawXml = ReadVerticle.readSource("/database/server");
-		return Response.status(200).entity(rawXml).build();
+		List<String> rawXml = ReadVerticle.readSource("/database/server");
+		TableBuilder tb = new TableBuilder();
+		tb.appendCol(rawXml);
+		return Response.status(200).entity(tb.buildTable()).build();
 
 	}
 
