@@ -1,8 +1,5 @@
 package com.xml.serverlist.ServerListApp.database;
 
-import java.io.File;
-import java.io.FileInputStream;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -12,7 +9,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 import java.io.StringWriter;
 import java.io.Writer;
