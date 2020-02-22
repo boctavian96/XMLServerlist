@@ -28,7 +28,7 @@ public class XmlRestService {
 	@GET
 	@Path("/name/{name:.*}")
 	public Response doGetName(@PathParam("name") String name) {
-		List<String> rawXml = ReadVerticle.readSource("/database/server[name =" + name + "]/");
+		List<String> rawXml = ReadVerticle.readSource("/database/server[game ='" + name + "']");
 		if (name == null || name.isEmpty()) {
 			name = "World";
 		}
@@ -41,7 +41,7 @@ public class XmlRestService {
 	@GET
 	@Path("/address/{address:.*}")
 	public Response doGetAddress(@PathParam("address") String address) {
-		List<String> rawXml = ReadVerticle.readSource("/database/server[name =" + address + "]/");
+		List<String> rawXml = ReadVerticle.readSource("/database/server[address='" + address + "']");
 		if (address == null || address.isEmpty()) {
 			address = "World";
 		}
@@ -52,17 +52,17 @@ public class XmlRestService {
 	}
 
 	@PUT
-	@Path("/put/{servername:.*}/{address:.*}")
+	@Path("/put/{id:.*}/{game:.*}/{servername:.*}/{address:.*}/{players:.*}/{playersMax:.*}/{votes:.*}/{version:.*}")
 	public Response doPutNewServer(@PathParam("servername") String serverName, @PathParam("address") String address) {
 		// TODO: Update the xml.
 		return Response.status(200).entity("worked :D").build();
 	}
 
 	@DELETE
-	@Path("/delete/{address:.*")
+	@Path("/delete/{id:.*")
 	public Response doDeleteServer() {
 		// TODO: Delete server.
-		return null;
+		return Response.status(200).entity("worked :D").build();
 	}
 
 	@GET
