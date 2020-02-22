@@ -19,39 +19,36 @@ public class XmlRestService {
 	@GET
 	@Path("/all")
 	public Response getAllServers() {
-		// TODO: Read this from xml.
-		String serversList = "Server1</br>Server2</br>...";
-		return Response.status(200).entity(serversList).build();
+		List<String> rawXml = ReadVerticle.readSource("/database/server");
+		TableBuilder tb = new TableBuilder();
+		tb.appendCol(rawXml);
+		return Response.status(200).entity(tb.buildTable()).build();
 	}
 
 	@GET
 	@Path("/name/{name:.*}")
 	public Response doGetName(@PathParam("name") String name) {
-		// TODO: Get servers with the following name.
+		List<String> rawXml = ReadVerticle.readSource("/database/server[name =" + name + "]/");
 		if (name == null || name.isEmpty()) {
 			name = "World";
 		}
+		TableBuilder tb = new TableBuilder();
+		tb.appendCol(rawXml);
 
-		return Response.status(200).entity("Hello " + name + "!").build();
+		return Response.status(200).entity(tb.buildTable()).build();
 	}
 
 	@GET
 	@Path("/address/{address:.*}")
 	public Response doGetAddress(@PathParam("address") String address) {
-
-		// TODO: Get servers with the following address.
+		List<String> rawXml = ReadVerticle.readSource("/database/server[name =" + address + "]/");
 		if (address == null || address.isEmpty()) {
-			address = "localhost";
+			address = "World";
 		}
+		TableBuilder tb = new TableBuilder();
+		tb.appendCol(rawXml);
 
-		return Response.status(200).entity("Our address is: " + address).build();
-	}
-
-	@GET
-	@Path("/tag/{tagname:.*}")
-	public Response doGetTagname(@PathParam("tagname") String tag) {
-		// TODO: Get all the servers with the following tag
-		return Response.status(200).entity("fml").build();
+		return Response.status(200).entity(tb.buildTable()).build();
 	}
 
 	@PUT
@@ -103,13 +100,18 @@ public class XmlRestService {
 		return Response.status(200).entity(html).build();
 	}
 
-//	@GET
-//	@Path("/raw")
-//	public Response doGetRawDatabase() {
-//		// Just list the servers raw
-//		String rawXml = ReadVerticle.readSource("/database/server");
-//		return Response.status(200).entity(rawXml).build();
-//	}
+	@GET
+	@Path("/raw")
+	public Response doGetRawDatabase() {
+		// Just list the servers raw
+		List<String> rawXml = ReadVerticle.readSource("/database/server");
+		StringBuilder rawRaw = new StringBuilder();
+		for (String xml : rawXml) {
+			rawRaw.append(xml);
+		}
+
+		return Response.status(200).entity(rawRaw.toString()).build();
+	}
 
 	@GET
 	@Path("/dummy_table")
