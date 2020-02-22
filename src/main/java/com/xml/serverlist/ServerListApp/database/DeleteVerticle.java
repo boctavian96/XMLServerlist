@@ -24,19 +24,19 @@ public class DeleteVerticle {
 		dbf.setValidating(false);
 		DocumentBuilder db = dbf.newDocumentBuilder();
 
-		Document doc = db.parse(new FileInputStream(new File("in.xml")));
+		// Document doc = db.parse(new FileInputStream(new File("in.xml")));
 
 		// retrieve the element 'link'
-		Element element = (Element) doc.getElementsByTagName("link").item(0);
+		// Element element = (Element) doc.getElementsByTagName("link").item(0);
 
 		// remove the specific node
-		element.getParentNode().removeChild(element);
+		// element.getParentNode().removeChild(element);
 
 		// Normalize the DOM tree, puts all text nodes in the
 		// full depth of the sub-tree underneath this node
-		doc.normalize();
+		// doc.normalize();
 
-		prettyPrint(doc);
+		// prettyPrint(doc);
 	}
 
 	public static final void prettyPrint(Document xml) throws Exception {
