@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -53,9 +54,9 @@ public class XmlRestService {
 		return Response.status(200).entity(tb.buildTable()).build();
 	}
 
-	@PUT
-	@Path("/put/{id:.*}/{game:.*}/{servername:.*}/{address:.*}/{players:.*}/{playersMax:.*}/{votes:.*}/{version:.*}")
-	public Response doPutNewServer(@PathParam("id") String id, @PathParam("game") String game,
+	@GET
+	@Path("/post/{id:.*}/{game:.*}/{servername:.*}/{address:.*}/{players:.*}/{playersMax:.*}/{votes:.*}/{version:.*}")
+	public Response doPostNewServer(@PathParam("id") String id, @PathParam("game") String game,
 			@PathParam("servername") String serverName, @PathParam("address") String address,
 			@PathParam("players") String players, @PathParam("playersMax") String playersMax,
 			@PathParam("votes") String votes, @PathParam("version") String version) {
@@ -71,7 +72,7 @@ public class XmlRestService {
 		}
 	}
 
-	@DELETE
+	@GET
 	@Path("/delete/{id:.*}")
 	public Response doDeleteServer(@PathParam("id") String id) {
 		try {

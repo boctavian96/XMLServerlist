@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <database>
 	<server>
 		<id>1</id>
@@ -63,5 +64,14 @@
 		<playersMax>50</playersMax>
 		<votes>123</votes>
 		<version>HDEdition</version>
+	</server>
+	<server>
+		<id>11</id>
+		<game>GOT</game>
+		<name>got_ro</name>
+		<address>314</address>
+		<players>523</players>
+		<playersMax>444</playersMax>
+		<version>1_6</version>
 	</server>
 </database>
