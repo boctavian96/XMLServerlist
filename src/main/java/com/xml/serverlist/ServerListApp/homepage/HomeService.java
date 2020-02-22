@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
+import com.xml.serverlist.ServerListApp.config.Config;
 import com.xml.serverlist.ServerListApp.database.ReadVerticle;
 import com.xml.serverlist.html.TableBuilder;
 
@@ -25,7 +26,7 @@ public class HomeService {
 	@GET
 	@Path("/api_info")
 	public Response getTheApi() {
-		return Response.status(200).entity(ServicesConstants.API_INFO).build();
+		return Response.status(200).entity(Config.API_INFO).build();
 	}
 
 }
