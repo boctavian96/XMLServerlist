@@ -10,6 +10,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import com.xml.serverlist.ServerListApp.database.CreateVerticle;
+import com.xml.serverlist.ServerListApp.database.DeleteVerticle;
 import com.xml.serverlist.ServerListApp.database.ReadVerticle;
 import com.xml.serverlist.html.TableBuilder;
 
@@ -27,10 +29,10 @@ public class XmlRestService {
 
 	@GET
 	@Path("/name/{name:.*}")
-	public Response doGetName(@PathParam("name") String name) {
-		List<String> rawXml = ReadVerticle.readSource("/database/server[game ='" + name + "']");
-		if (name == null || name.isEmpty()) {
-			name = "World";
+	public Response doGetName(@PathParam("name") String game) {
+		List<String> rawXml = ReadVerticle.readSource("/database/server[game ='" + game + "']");
+		if (game == null || game.isEmpty()) {
+			game = "World";
 		}
 		TableBuilder tb = new TableBuilder();
 		tb.appendCol(rawXml);
@@ -53,16 +55,33 @@ public class XmlRestService {
 
 	@PUT
 	@Path("/put/{id:.*}/{game:.*}/{servername:.*}/{address:.*}/{players:.*}/{playersMax:.*}/{votes:.*}/{version:.*}")
-	public Response doPutNewServer(@PathParam("servername") String serverName, @PathParam("address") String address) {
-		// TODO: Update the xml.
-		return Response.status(200).entity("worked :D").build();
+	public Response doPutNewServer(@PathParam("id") String id, @PathParam("game") String game,
+			@PathParam("servername") String serverName, @PathParam("address") String address,
+			@PathParam("players") String players, @PathParam("playersMax") String playersMax,
+			@PathParam("votes") String votes, @PathParam("version") String version) {
+
+		try {
+			CreateVerticle cv = new CreateVerticle();
+			cv.addNode(id, game, serverName, address, players, playersMax, votes, version);
+
+			return Response.status(200).entity("Added a new node in the database with id: " + id).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(200).entity("Failure").build();
+		}
 	}
 
 	@DELETE
-	@Path("/delete/{id:.*")
-	public Response doDeleteServer() {
-		// TODO: Delete server.
-		return Response.status(200).entity("worked :D").build();
+	@Path("/delete/{id:.*}")
+	public Response doDeleteServer(@PathParam("id") String id) {
+		try {
+			DeleteVerticle dv = new DeleteVerticle();
+			dv.deleteNode(id);
+			return Response.status(200).entity("Deleted the entry with id: " + id).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(200).entity("Deleted the entry with id: " + id).build();
+		}
 	}
 
 	@GET
